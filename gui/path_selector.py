@@ -22,7 +22,11 @@ class PathSelector:
         self.window.resizable(False, False)
 
         try:
-            icon_path = pathlib.Path(__file__).parent.parent / "assets" / "satellite_icon.ico"
+            import sys
+            if getattr(sys, 'frozen', False):
+                icon_path = pathlib.Path(sys._MEIPASS) / "assets" / "satellite_icon.icns"
+            else:
+                icon_path = pathlib.Path(__file__).parent.parent / "assets" / "satellite_icon.icns"
             if icon_path.exists():
                 self.window.iconbitmap(str(icon_path))
         except Exception as e:

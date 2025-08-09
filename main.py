@@ -11,8 +11,16 @@ import tkinter as tk
 from tkinter import messagebox
 
 # Add project root to path
-PROJECT_ROOT = pathlib.Path(__file__).parent
-sys.path.insert(0, str(PROJECT_ROOT))
+import sys
+import os
+
+# Get the path to the bundled directory or script directory
+if getattr(sys, 'frozen', False):
+    # Running as bundled exe
+    PROJECT_ROOT = pathlib.Path(sys._MEIPASS)
+else:
+    # Running as script
+    PROJECT_ROOT = pathlib.Path(__file__).parent
 
 # Import our modules
 from gui.login_window import LoginWindow
@@ -21,6 +29,8 @@ from gui.main_window import MainWindow
 from core.auth_manager import AuthManager
 from core.path_manager import PathManager
 from utils.file_manager import FileManager
+
+
 
 
 class SatelliteProcessor:

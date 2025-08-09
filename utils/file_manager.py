@@ -13,7 +13,11 @@ class FileManager:
 
     def __init__(self):
         # Get temp directory relative to project root
-        self.project_root = pathlib.Path(__file__).parent.parent
+        import sys
+        if getattr(sys, 'frozen', False):
+            self.project_root = pathlib.Path(sys._MEIPASS)
+        else:
+            self.project_root = pathlib.Path(__file__).parent.parent
         self.temp_dir = self.project_root / "temp"
 
     def get_temp_dir(self) -> pathlib.Path:

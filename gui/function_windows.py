@@ -621,7 +621,11 @@ class Enhance8xWindow(BaseFunctionWindow):
         self.available_files = []
 
         # Initialize ML processor
-        model_path = pathlib.Path(__file__).parent.parent / "ml_models" / "checkpoints" / "net_g_45738.pth"
+        import sys
+        if getattr(sys, 'frozen', False):
+            model_path = pathlib.Path(sys._MEIPASS) / "ml_models" / "checkpoints" / "net_g_45738.pth"
+        else:
+            model_path = pathlib.Path(__file__).parent.parent / "ml_models" / "checkpoints" / "net_g_45738.pth"
         if model_path.exists():
             if torch is not None:
                 device_obj, device_name = get_best_device()
@@ -960,7 +964,11 @@ class PolarEnhanced8xWindow(BaseFunctionWindow):
         self.center_window(500, 350)
 
         # Initialize ML processor
-        model_path = pathlib.Path(__file__).parent.parent / "ml_models" / "checkpoints" / "net_g_45738.pth"
+        import sys
+        if getattr(sys, 'frozen', False):
+            model_path = pathlib.Path(sys._MEIPASS) / "ml_models" / "checkpoints" / "net_g_45738.pth"
+        else:
+            model_path = pathlib.Path(__file__).parent.parent / "ml_models" / "checkpoints" / "net_g_45738.pth"
         if model_path.exists():
             if torch is not None:
                 device_obj, device_name = get_best_device()
