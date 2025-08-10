@@ -4,6 +4,7 @@ Output path manager
 
 import pathlib
 import os
+import sys
 
 
 class PathManager:

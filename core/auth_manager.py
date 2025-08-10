@@ -4,6 +4,7 @@ Authentication manager for gportal credentials
 
 import pathlib
 import os
+import sys
 
 
 class AuthManager:

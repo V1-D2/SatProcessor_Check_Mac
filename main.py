@@ -152,18 +152,23 @@ class SatelliteProcessor:
 
 def main():
     """Main entry point"""
-    # Create necessary directories
-    config_dir = PROJECT_ROOT / "config"
-    temp_dir = PROJECT_ROOT / "temp"
-    assets_dir = PROJECT_ROOT / "assets"
+    try:
+        # Create necessary directories
+        config_dir = PROJECT_ROOT / "config"
+        temp_dir = PROJECT_ROOT / "temp"
+        assets_dir = PROJECT_ROOT / "assets"
 
-    config_dir.mkdir(exist_ok=True)
-    temp_dir.mkdir(exist_ok=True)
-    assets_dir.mkdir(exist_ok=True)
+        config_dir.mkdir(exist_ok=True)
+        temp_dir.mkdir(exist_ok=True)
+        assets_dir.mkdir(exist_ok=True)
 
-    # Run application
-    app = SatelliteProcessor()
-    app.run()
+        # Run application
+        app = SatelliteProcessor()
+        app.run()
+    except Exception as e:
+        import error_log
+        error_log.log_error()
+        raise
 
 
 if __name__ == "__main__":
